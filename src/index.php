@@ -1,113 +1,36 @@
-<?php
-session_start();
-
-include 'product.php';
-if (isset($_POST['Select'])) {
-    echo 'clicked';
-    $get_id = $_POST['id_suply'];
-    // echo 'id get'.$get_id.'<br>';
-    // $id = 103;
-    $quantity = 1;
-    foreach ($products as $match_id) {
-        // echo $match_id['id'];
-        if ($match_id['id'] == $get_id) {
-            $id = $id;
-            $image =  $match_id['image'];
-            $price =  $match_id['price'];
-            $name =  $match_id['name'];
-            $quantity = $quantity ;
-            $product = array($name, $price, $image, $quantity);
-
-            $_SESSION[$name] = $product;
-        }
-    }
-}
-if(isset($_POST['event'])){
-    $event = $_POST['event'];
-    $name = $_POST['name_sp'];
-    $price = $_POST['price_sp'];
-    $quantity = $_POST['quan_sp'];
-    $image = $_POST['image_sp'];
-    // $name = $_POST
-    $product = array($name, $price, $image, $quantity);
-    if($event == 'update'){
-        unset($_SESSION[$name]);
-
-    $_SESSION[$name] = $product;
-        echo "done update";
-}else{
-    unset($_SESSION[$name]);
-    echo "deleted";
-}
-    // $name = $_POST
-}
-
-?>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        #cart{
-
-            width:  70%;
-            margin: 0 auto;
-            /* margin-top: 10%; */
-        }
-    </style>
+	<title>
+		Home
+	</title>
+	<link href="style.css" type="text/css" rel="stylesheet">
 </head>
-
 <body>
+	<div id="header">
+		<h1 id="logo">Logo</h1>
+		<nav>
+			<ul id="menu">
+				<li><a href="index.php">Home</a></li>
+				<li><a href="products.php">Products</a></li>
+				<li><a href="contact.php">Contact</a></li>
+			</ul>
+		</nav>
+	</div>
+	<div id="main">
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+		<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-    <!-- <a href="cart.php">Cart</a> -->
-    <div class="header">
-        <div class="upp">
-            <div class="container">
-                <?php
-
-                foreach ($products as $item) {
-                    // echo 'k'.$products[$i].'yes--<pre>'.$item."=></pre>";
-                    // $i++;
-                    echo '<form method="POST"><div id="pro"style="float:left; margin-left:10%;margin-top:2%;margin-bottom:5%;">
-                            <img src="images/' . $item['image'] . '">
-
-                        <p>' . $item['name'] . '</p><input value=' . $item['id'] . ' name= "id_suply" hidden><input type="submit" name="Select" value="Add To Cart"></div></form>';
-                }
-                ?>
-            </div>
-        </div>
-        
-</div>
-<div class="var" id="cart">
-
-<h3>Cart Section</h3>
-<?php     
-    $html = "";
-    $s_no = 0;
-    foreach ($_SESSION as  $product) {
-        
-        // echo ($s_no++);
-        echo "<form action ='' method='POST'>";
-        echo  '<div class="cont"  style="float:left; margin-left:10%;margin-top:5%">
-        <p>'.$s_no++.'<img src="images/' . $product[2] . '">
-        <p>Price  $ ' . $product[1] . '</p>' . $product[0] . '<p>Quantity - <input type="text" name="quan_sp"  value='.$product[3].'></p>
-        <input type="submit" name ="event" value="update"/>
-        <input value=' . $product[0] . ' name= "name_sp" hidden>
-        <input value=' . $product[1] . ' name= "price_sp" hidden><input value=' . $product[2] . ' name= "image_sp" hidden>
-       
-
-        <input type="submit" name ="event" value="Delete"/>
-        </div>';
-        echo  "</form>";
-    }
-    ?>
-    </div>
-</div>
+		<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+		<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+	</div>
+	<div id="footer">
+		<nav>
+			<ul id="footer-links">
+				<li><a href="#">Privacy</a></li>
+				<li><a href="#">Declaimers</a></li>
+			</ul>
+		</nav>
+	</div>
 </body>
-
 </html>
-<!-- // <input value='  ' name= "quantity" hidden> -->
